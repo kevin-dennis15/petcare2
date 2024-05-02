@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.capstone.petcare2.Models.UserModel;
 import com.capstone.petcare2.Repository.UserRepository;
+import com.capstone.petcare2.Repository.UserRepository1;
 
 @Service
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository1 userRepository;
 
     // Add a new user
     public UserModel addUser(UserModel user) {
@@ -22,7 +23,7 @@ public class UserService {
     }
 
     // Update an existing user
-    public UserModel updateUser(UUID userId, UserModel newUser) {
+    public UserModel updateUser(Long userId, UserModel newUser) {
         Optional<UserModel> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             UserModel existingUser = optionalUser.get();
@@ -40,12 +41,12 @@ public class UserService {
     }
 
     // Delete a user by id
-    public void deleteUser(UUID userId) {
+    public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
     }
 
     // View a user by id
-    public Optional<UserModel> getUserById(UUID userId) {
+    public Optional<UserModel> getUserById(Long userId) {
         return userRepository.findById(userId);
     }
 
