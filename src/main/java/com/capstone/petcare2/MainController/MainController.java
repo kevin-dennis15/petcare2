@@ -17,12 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.petcare2.Models.AdminModel;
 import com.capstone.petcare2.Models.BookingModel;
-// import com.capstone.petcare2.Models.BookingModel;
 import com.capstone.petcare2.Models.PetModel;
 import com.capstone.petcare2.Models.UserModel;
 import com.capstone.petcare2.Services.AdminService;
 import com.capstone.petcare2.Services.BookingService;
-// import com.capstone.petcare2.Services.BookingService;
 import com.capstone.petcare2.Services.PetService;
 import com.capstone.petcare2.Services.UserService;
 
@@ -50,19 +48,19 @@ public class MainController {
     }
 
     @PutMapping("updateUser/{userId}")
-    public ResponseEntity<UserModel> updateUser(@PathVariable UUID userId, @RequestBody UserModel newUser) {
+    public ResponseEntity<UserModel> updateUser(@PathVariable Long userId, @RequestBody UserModel newUser) {
         UserModel updatedUser = userService.updateUser(userId, newUser);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     @DeleteMapping("deleteUser/{userId}")
-    public ResponseEntity<?> deleteUser(@PathVariable UUID userId) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("getUser/{userId}")
-    public ResponseEntity<UserModel> getUserById(@PathVariable UUID userId) {
+    public ResponseEntity<UserModel> getUserById(@PathVariable Long userId) {
         Optional<UserModel> optionalUser = userService.getUserById(userId);
         UserModel user = optionalUser.orElseThrow(() -> new RuntimeException("User not found"));
         
