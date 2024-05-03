@@ -29,7 +29,6 @@ public class BookingModel {
     private LocalDateTime endTime;
     private String status;
 
-
 }
 
 
